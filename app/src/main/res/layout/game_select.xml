@@ -16,6 +16,7 @@
 
         <Button
             android:id="@+id/football_btn"
+            android:text="Football"
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:padding="25dp"
@@ -25,6 +26,7 @@
 
         <Button
             android:id="@+id/basketball_btn"
+            android:text="Basketball"
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:layout_centerHorizontal="true"
@@ -35,6 +37,7 @@
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:padding="25dp"
+            android:text="Baseball"
             android:id="@+id/baseball_btn"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
@@ -44,6 +47,7 @@
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:padding="25dp"
+            android:text="volleyball"
             android:id="@+id/volleyball_btn"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
@@ -53,6 +57,7 @@
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:padding="25dp"
+            android:text="Ultimate"
             android:id="@+id/ultimate_btn"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -62,6 +67,7 @@
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:padding="25dp"
+            android:text="Soccer"
             android:id="@+id/soccer_btn"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
