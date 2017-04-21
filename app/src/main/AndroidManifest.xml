@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NewGameActivity" android:screenOrientation="landscape">
+        <activity android:name=".GameSelectActivity" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.ALTERNATIVE"/>
@@ -38,6 +38,55 @@
         </activity>
 
         <activity android:name=".AppSettingsActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".BaseballGameActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".BasketballGameActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".FootballGameActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SettingsActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SoccerGameActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".UltimateGameActivity" android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.ALTERNATIVE"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".VolleyballGameActivity" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.ALTERNATIVE"/>
