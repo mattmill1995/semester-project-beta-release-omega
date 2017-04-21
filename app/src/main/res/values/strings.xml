@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="settings_menu_sound">Sounds</string>
+    <string name="settings_menu_colors">Colors</string>
+    <string name="settings_menu_background">Background</string>
+    <string name="settings_menu_font">Font</string>
+    <string name="toggle_on">On</string>
+    <string name="toggle_off">Off</string>
+    <string-array name="list_of_colors">
+        <item>Black</item>
+        <item>White</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+    </string-array>
+</resources>
