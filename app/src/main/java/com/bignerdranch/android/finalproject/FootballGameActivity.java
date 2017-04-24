@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class FootballGameActivity extends AppCompatActivity{
 
     Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, Team1Score6_Button, Team2Score6_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000;
+    int team1Score = 0, team2Score = 0, clock_value = 600000, lastScore;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
@@ -87,22 +87,90 @@ public class FootballGameActivity extends AppCompatActivity{
             }
         });
 
-        Team1Score_Button.setOnClickListener(new View.OnClickListener(){
+        Team1Score1_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 team1Score++;
                 team1_flag = true;
                 team2_flag = false;
+                lastScore = 1;
                 updateScore();
             }
         });
 
-        Team2Score_Button.setOnClickListener(new View.OnClickListener(){
+        Team1Score2_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team1Score = team1Score+2;
+                team1_flag = true;
+                team2_flag = false;
+                lastScore = 2;
+                updateScore();
+            }
+        });
+
+        Team1Score3_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team1Score=team1Score+3;
+                team1_flag = true;
+                team2_flag = false;
+                lastScore = 3;
+                updateScore();
+            }
+        });
+
+        Team1Score6_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team1Score=team1Score+6;
+                team1_flag = true;
+                team2_flag = false;
+                lastScore = 6;
+                updateScore();
+            }
+        });
+
+        Team2Score1_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 team2Score++;
                 team1_flag = false;
                 team2_flag = true;
+                lastScore = 1;
+                updateScore();
+            }
+        });
+
+        Team2Score2_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team2Score = team2Score+2;
+                team2_flag = true;
+                team1_flag = false;
+                lastScore = 2;
+                updateScore();
+            }
+        });
+
+        Team2Score3_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team2Score = team2Score+3;
+                team2_flag = true;
+                team1_flag = false;
+                lastScore = 3;
+                updateScore();
+            }
+        });
+
+        Team2Score6_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team2Score = team2Score+6;
+                team2_flag = true;
+                team1_flag = false;
+                lastScore = 6;
                 updateScore();
             }
         });
@@ -126,14 +194,14 @@ public class FootballGameActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if(team1_flag){
                     if(team1Score > 0){
-                        team1Score--;
+                        team1Score = team1Score - lastScore;
                         updateScore();
                         team1_flag = false;
                         team2_flag = false;
                     }
                 } else if (team2_flag){
                     if(team2Score > 0) {
-                        team2Score--;
+                        team2Score = team2Score - lastScore;
                         updateScore();
                         team1_flag = false;
                         team2_flag = false;
