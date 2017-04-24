@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class BasketballGameActivity extends AppCompatActivity{
 
-    Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000;
+    Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
+    int team1Score = 0, team2Score = 0, clock_value = 600000, lastScore;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
@@ -49,11 +49,15 @@ public class BasketballGameActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.football_game);
+        setContentView(R.layout.basketball_game);
 
         // wire up the buttons
-        Team1Score_Button = (Button) findViewById(R.id.team_1_score_button);
-        Team2Score_Button = (Button) findViewById(R.id.team_2_score_button);
+        Team1Score1_Button = (Button) findViewById(R.id.team_1_score_button_1);
+        Team2Score1_Button = (Button) findViewById(R.id.team_2_score_button_1);
+        Team1Score2_Button = (Button) findViewById(R.id.team_1_score_button_2);
+        Team2Score2_Button = (Button) findViewById(R.id.team_2_score_button_2);
+        Team1Score3_Button = (Button) findViewById(R.id.team_1_score_button_3);
+        Team2Score3_Button = (Button) findViewById(R.id.team_2_score_button_3);
         SaveGame_Button = (Button) findViewById(R.id.save_game_button);
         MainMenu_Button = (Button) findViewById(R.id.main_menu_button);
         SetClock_Button = (Button) findViewById(R.id.set_clock_button);
@@ -81,22 +85,68 @@ public class BasketballGameActivity extends AppCompatActivity{
             }
         });
 
-        Team1Score_Button.setOnClickListener(new View.OnClickListener(){
+        Team1Score1_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 team1Score++;
                 team1_flag = true;
                 team2_flag = false;
+                lastScore = 1;
                 updateScore();
             }
         });
 
-        Team2Score_Button.setOnClickListener(new View.OnClickListener(){
+        Team2Score1_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 team2Score++;
                 team1_flag = false;
                 team2_flag = true;
+                lastScore = 1;
+                updateScore();
+            }
+        });
+
+        Team1Score2_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team1Score = team1Score + 2;
+                team1_flag = true;
+                team2_flag = false;
+                lastScore = 2;
+                updateScore();
+            }
+        });
+
+        Team2Score2_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team2Score = team2Score + 2;
+                team1_flag = false;
+                team2_flag = true;
+                lastScore = 2;
+                updateScore();
+            }
+        });
+
+        Team1Score3_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team1Score = team1Score + 3;
+                team1_flag = true;
+                team2_flag = false;
+                lastScore = 3;
+                updateScore();
+            }
+        });
+
+        Team2Score3_Button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                team2Score = team2Score + 3;
+                team1_flag = false;
+                team2_flag = true;
+                lastScore = 3;
                 updateScore();
             }
         });
@@ -120,14 +170,14 @@ public class BasketballGameActivity extends AppCompatActivity{
             public void onClick(View v) {
                 if(team1_flag){
                     if(team1Score > 0){
-                        team1Score--;
+                        team1Score = team1Score - lastScore;
                         updateScore();
                         team1_flag = false;
                         team2_flag = false;
                     }
                 } else if (team2_flag){
                     if(team2Score > 0) {
-                        team2Score--;
+                        team2Score = team2Score - lastScore;
                         updateScore();
                         team1_flag = false;
                         team2_flag = false;

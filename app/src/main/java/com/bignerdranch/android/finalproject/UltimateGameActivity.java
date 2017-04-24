@@ -49,11 +49,11 @@ public class UltimateGameActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.football_game);
+        setContentView(R.layout.ultimate_game);
 
         // wire up the buttons
-        Team1Score_Button = (Button) findViewById(R.id.team_1_score_button);
-        Team2Score_Button = (Button) findViewById(R.id.team_2_score_button);
+        Team1Score_Button = (Button) findViewById(R.id.team_1_score_button_1);
+        Team2Score_Button = (Button) findViewById(R.id.team_2_score_button_1);
         SaveGame_Button = (Button) findViewById(R.id.save_game_button);
         MainMenu_Button = (Button) findViewById(R.id.main_menu_button);
         SetClock_Button = (Button) findViewById(R.id.set_clock_button);
