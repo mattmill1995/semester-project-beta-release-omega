@@ -21,7 +21,7 @@ public class GameSelectActivity extends AppCompatActivity {
         mFootball.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GameSelectActivity.this, FootballGameActivity.class);
+                Intent intent = new Intent(getApplicationContext(), FootballGameActivity.class);
                 startActivity(intent);
             }
         });
