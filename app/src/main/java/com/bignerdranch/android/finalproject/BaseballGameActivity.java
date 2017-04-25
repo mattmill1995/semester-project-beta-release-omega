@@ -86,6 +86,8 @@ public class BaseballGameActivity extends AppCompatActivity{
                 team2Score = 0;
                 updateScore();
                 clock_view.setText("1 ↑");
+                team_2_score.setVisibility(View.VISIBLE);
+                team_1_score.setVisibility(View.VISIBLE);
             }
         });
 
@@ -157,6 +159,13 @@ public class BaseballGameActivity extends AppCompatActivity{
                     outs = 0;
                     outs_view.setText(""+outs);
                 }
+            }
+        });
+
+        clock_view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                updateClock();
             }
         });
     }

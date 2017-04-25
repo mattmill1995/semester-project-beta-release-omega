@@ -12,10 +12,10 @@ import android.widget.TextView;
 public class BasketballGameActivity extends AppCompatActivity{
 
     Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000, lastScore;
+    int team1Score = 0, team2Score = 0, clock_value = 6000, lastScore, shot_clock_value = 30000, half_number = 1;
     long minutes, seconds, current_clock_value;
-    TextView team_1_score, team_2_score, clock_view;
-    boolean team1_flag = false, team2_flag = false, clock_Start = false;
+    TextView team_1_score, team_2_score, clock_view, shotclock_view, quarter_view;
+    boolean team1_flag = false, team2_flag = false, clock_Start = false, shot_clock_start = false;
     String result;
 
     CountDownTimer clock = new CountDownTimer(clock_value, 1000){
@@ -24,7 +24,19 @@ public class BasketballGameActivity extends AppCompatActivity{
             clock_view.setText(""+millRemaining/1000);
         }
         public void onFinish(){
-            clock_view.setText("0");
+            clock_view.setText("0:00");
+        }
+    };
+
+    CountDownTimer shot_clock = new CountDownTimer(shot_clock_value, 1000) {
+        @Override
+        public void onTick(long millRemaining) {
+            shotclock_view.setText(":"+millRemaining/1000);
+        }
+
+        @Override
+        public void onFinish() {
+            shotclock_view.setText(":30");
         }
     };
 
@@ -69,12 +81,16 @@ public class BasketballGameActivity extends AppCompatActivity{
         team_1_score = (TextView) findViewById(R.id.team_1_score_view);
         team_2_score = (TextView) findViewById(R.id.team_2_score_view);
         clock_view = (TextView) findViewById(R.id.timer);
+        shotclock_view = (TextView) findViewById(R.id.shot_clock);
+        quarter_view = (TextView) findViewById(R.id.half_indicator);
 
         //display initial score
         updateScore();
 
         //display initial clock
         clock_view.setText("10:00");
+        shotclock_view.setText(":30");
+        quarter_view.setText("1");
 
         // Make the buttons do stuff
         MainMenu_Button.setOnClickListener(new View.OnClickListener(){
@@ -161,6 +177,8 @@ public class BasketballGameActivity extends AppCompatActivity{
                 clock.cancel();
                 clock_view.setText("10:00");
                 clock_value = 600000;
+                half_number = 1;
+                quarter_view.setText(""+half_number);
                 clock_Start = false;
             }
         });
@@ -202,6 +220,19 @@ public class BasketballGameActivity extends AppCompatActivity{
                 }
             }
         });
+
+        shotclock_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shot_clock_start == false) {
+                    shot_clock.start();
+                    shot_clock_start = true;
+                } else if (shot_clock_start == true){
+                    shot_clock.cancel();
+                    shotclock_view.setText(":30");
+                    shot_clock_start = false;
+                }
+            }});
     }
 
     void updateScore() {
@@ -220,6 +251,15 @@ public class BasketballGameActivity extends AppCompatActivity{
             }
             public void onFinish(){
                 clock_view.setText("0:00");
+                if (half_number == 1){
+                    half_number = 2;
+                    quarter_view.setText(""+half_number);
+                    clock_value = 6000;
+                    clock_view.setText("10:00");
+                }
+                else{
+                    clock_view.setText("GAME OVER");
+                }
             }
         };
     }
