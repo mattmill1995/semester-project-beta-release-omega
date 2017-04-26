@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 public class BaseballGameActivity extends AppCompatActivity{
 
     Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
     int team1Score = 0, team2Score = 0, strikes = 0, balls = 0, outs = 0;
-    TextView team_1_score, team_2_score, clock_view, outs_view, balls_view, strikes_view;
+    TextView team_1_score, team_2_score, clock_view, outs_view, balls_view, strikes_view, balls_title, strikes_title, outs_title;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,9 @@ public class BaseballGameActivity extends AppCompatActivity{
         outs_view = (TextView) findViewById(R.id.outs_indicator);
         balls_view = (TextView) findViewById(R.id.balls_indicator);
         strikes_view = (TextView) findViewById(R.id.strikes_indicator);
+        balls_title = (TextView) findViewById(R.id.balls_title);
+        strikes_title = (TextView) findViewById(R.id.strikes_title);
+        outs_title = (TextView) findViewById(R.id.outs_title);
 
         //display initial score
         updateScore();

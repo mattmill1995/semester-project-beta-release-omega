@@ -60,7 +60,7 @@
         android:id="@+id/save_game_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:text="Save Game"
         />
@@ -69,10 +69,10 @@
         android:id="@+id/undo_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Undo Last Score"/>
+        android:text="Undo Score"/>
 
     <TextView
         android:id="@+id/team_1_score_view"
@@ -98,7 +98,7 @@
         android:id="@+id/set_score_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/save_game_button"
         android:text="Set Score"/>
 
@@ -106,7 +106,7 @@
         android:id="@+id/reset_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/set_score_button"
         android:text="Reset"/>
 
@@ -116,7 +116,7 @@
         android:id="@+id/set_clock_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/undo_button"
         android:layout_alignParentRight="true"
         android:text="Set Clock"/>
@@ -125,7 +125,7 @@
         android:id="@+id/main_menu_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/set_clock_button"
         android:layout_alignParentRight="true"
         android:text="Main Menu"/>

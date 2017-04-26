@@ -26,7 +26,7 @@
         android:id="@+id/save_game_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:text="Save Game"
         />
@@ -35,7 +35,7 @@
         android:id="@+id/undo_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="Undo Last Score"/>
@@ -64,7 +64,7 @@
         android:id="@+id/set_score_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/save_game_button"
         android:text="Set Score"/>
 
@@ -73,14 +73,14 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_above="@id/save_game_button"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:text="Set Score"/>
 
     <Button
         android:id="@+id/reset_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/set_score_button"
         android:text="Reset"/>
 
@@ -90,7 +90,7 @@
         android:id="@+id/set_clock_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/undo_button"
         android:layout_alignParentRight="true"
         android:text="Set Clock"/>
@@ -99,7 +99,7 @@
         android:id="@+id/main_menu_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_above="@id/set_clock_button"
         android:layout_alignParentRight="true"
         android:text="Main Menu"/>
@@ -113,6 +113,8 @@
         android:textSize="65dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
+
+
 
     <TextView
         android:id="@+id/balls_indicator"
@@ -129,6 +131,19 @@
         android:layout_toEndOf="@+id/strikes_indicator"/>
 
     <TextView
+        android:id="@+id/balls_title"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/balls_indicator"
+        android:layout_alignTop="@id/main_menu_button"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAlignment="center"
+        android:text="balls"
+        android:textSize="15dp"/>
+
+
+
+    <TextView
         android:id="@+id/strikes_indicator"
         android:layout_width="50dp"
         android:layout_height="100dp"
@@ -143,6 +158,21 @@
         android:textSize="65dp"/>
 
     <TextView
+        android:id="@+id/strikes_title"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAlignment="center"
+        android:text="strikes"
+        android:textSize="15dp"
+        android:layout_alignBaseline="@+id/balls_title"
+        android:layout_alignBottom="@+id/balls_title"
+        android:layout_alignLeft="@+id/strikes_indicator"
+        android:layout_alignStart="@+id/strikes_indicator"/>
+
+
+
+    <TextView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_toRightOf="@id/balls_indicator"
@@ -153,5 +183,16 @@
         android:textAlignment="center"
         android:textSize="65dp"
         android:id="@+id/outs_indicator"/>
+
+    <TextView
+        android:id="@+id/outs_title"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/outs_indicator"
+        android:layout_alignTop="@id/main_menu_button"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textAlignment="center"
+        android:text="outs"
+        android:textSize="25dp"/>
 
 </RelativeLayout>
