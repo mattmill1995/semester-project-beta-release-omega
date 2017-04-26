@@ -8,18 +8,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 public class FootballGameActivity extends AppCompatActivity{
 
+    final int base_timer = 600000;
+
     Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, Team1Score6_Button, Team2Score6_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000, lastScore;
+    int team1Score = 0, team2Score = 0, clock_value = base_timer, lastScore, quarter = 1, down = 1;
     long minutes, seconds, current_clock_value;
-    TextView team_1_score, team_2_score, clock_view;
+    TextView team_1_score, team_2_score, clock_view, quarter_view, downs_view, downs_title, quarter_title;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
     String result;
 
     CountDownTimer clock = new CountDownTimer(clock_value, 1000){
-
         public void onTick(long millRemaining){
             clock_view.setText(""+millRemaining/1000);
         }
@@ -71,6 +74,11 @@ public class FootballGameActivity extends AppCompatActivity{
         team_1_score = (TextView) findViewById(R.id.team_1_score_view);
         team_2_score = (TextView) findViewById(R.id.team_2_score_view);
         clock_view = (TextView) findViewById(R.id.timer);
+        quarter_view = (TextView) findViewById(R.id.quarter_indicator);
+        downs_view = (TextView) findViewById(R.id.down_indicator);
+        downs_title = (TextView) findViewById(R.id.down_title);
+        quarter_title = (TextView) findViewById(R.id.quarter_title);
+
 
         //display initial score
         updateScore();
@@ -94,6 +102,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team1_flag = true;
                 team2_flag = false;
                 lastScore = 1;
+                down = 1;
                 updateScore();
             }
         });
@@ -105,6 +114,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team1_flag = true;
                 team2_flag = false;
                 lastScore = 2;
+                down = 1;
                 updateScore();
             }
         });
@@ -116,6 +126,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team1_flag = true;
                 team2_flag = false;
                 lastScore = 3;
+                down = 1;
                 updateScore();
             }
         });
@@ -127,6 +138,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team1_flag = true;
                 team2_flag = false;
                 lastScore = 6;
+                down = 1;
                 updateScore();
             }
         });
@@ -138,6 +150,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team1_flag = false;
                 team2_flag = true;
                 lastScore = 1;
+                down = 1;
                 updateScore();
             }
         });
@@ -149,6 +162,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team2_flag = true;
                 team1_flag = false;
                 lastScore = 2;
+                down = 1;
                 updateScore();
             }
         });
@@ -160,6 +174,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team2_flag = true;
                 team1_flag = false;
                 lastScore = 3;
+                down = 1;
                 updateScore();
             }
         });
@@ -171,6 +186,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 team2_flag = true;
                 team1_flag = false;
                 lastScore = 6;
+                down = 1;
                 updateScore();
             }
         });
@@ -180,11 +196,13 @@ public class FootballGameActivity extends AppCompatActivity{
             public void onClick(View v) {
                 team1Score = 0;
                 team2Score = 0;
+                quarter = 1;
+                down = 1;
                 updateScore();
 
                 clock.cancel();
                 clock_view.setText("10:00");
-                clock_value = 600000;
+                clock_value = base_timer;
                 clock_Start = false;
             }
         });
@@ -226,11 +244,31 @@ public class FootballGameActivity extends AppCompatActivity{
                 }
             }
         });
+
+        downs_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                down = ((down)%4)+1;
+                updateScore();
+            }
+        });
+
+        quarter_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quarter = ((quarter)%4)+1;
+                updateScore();
+            }
+        });
+
+
     }
 
     void updateScore() {
         team_1_score.setText(""+team1Score);
         team_2_score.setText(""+team2Score);
+        downs_view.setText("" + down);
+        quarter_view.setText("" + quarter);
     }
 
     void updateClock(){
@@ -243,7 +281,17 @@ public class FootballGameActivity extends AppCompatActivity{
                 current_clock_value = millRemaining;
             }
             public void onFinish(){
+
                 clock_view.setText("0:00");
+                down = 1;
+                clock_Start = false;
+                clock_value = base_timer;
+                if (quarter < 4){
+                    quarter++;
+                } else {
+                    clock_view.setText("GG");
+                }
+                updateScore();
             }
         };
     }

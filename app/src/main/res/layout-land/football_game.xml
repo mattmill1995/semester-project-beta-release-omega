@@ -162,21 +162,38 @@
         android:textColor="@android:color/holo_orange_dark"
         android:textAlignment="center"
         android:textSize="65dp"
-        android:layout_alignBaseline="@+id/quarter_indicator"
-        android:layout_alignBottom="@+id/quarter_indicator"
-        android:layout_toLeftOf="@+id/timer"
-        android:layout_toStartOf="@+id/timer"/>
+        android:layout_alignTop="@+id/quarter_indicator"
+        android:layout_toLeftOf="@id/main_menu_button"
+        android:layout_marginRight="50dp"
+        />
+
+    <TextView
+        android:id="@+id/down_title"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/down_indicator"
+        android:layout_alignLeft="@id/down_indicator"
+        android:text="Downs"
+        android:textColor="@android:color/holo_orange_dark"/>
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_toRightOf="@id/down_indicator"
-        android:layout_below="@id/timer"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_alignTop="@id/reset_button"
+        android:layout_toRightOf="@id/reset_button"
+        android:layout_marginLeft="50dp"
         android:textColor="@android:color/holo_orange_dark"
         android:textAlignment="center"
         android:textSize="65dp"
         android:id="@+id/quarter_indicator"/>
+
+    <TextView
+        android:id="@+id/quarter_title"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/quarter_indicator"
+        android:layout_alignLeft="@id/quarter_indicator"
+        android:text="Quarter"
+        android:textColor="@android:color/holo_orange_dark"/>
 
 </RelativeLayout>

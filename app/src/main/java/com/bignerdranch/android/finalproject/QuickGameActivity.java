@@ -118,7 +118,7 @@ public class QuickGameActivity extends AppCompatActivity{
         SetScore_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                
+
             }
         });
 
