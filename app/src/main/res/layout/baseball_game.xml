@@ -38,7 +38,7 @@
         android:layout_margin="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Undo Last Score"/>
+        android:text="Undo Score"/>
 
     <TextView
         android:id="@+id/team_1_score_view"

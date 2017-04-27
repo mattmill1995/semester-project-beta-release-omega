@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 public class BasketballGameActivity extends AppCompatActivity{
 
+    final int base_time = 6000;
+
     Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 6000, lastScore, shot_clock_value = 30000, half_number = 1;
+    int team1Score = 0, team2Score = 0, clock_value = base_time, lastScore, shot_clock_value = 30000, half_number = 1;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view, shotclock_view, quarter_view;
     boolean team1_flag = false, team2_flag = false, clock_Start = false, shot_clock_start = false;
@@ -176,7 +178,7 @@ public class BasketballGameActivity extends AppCompatActivity{
 
                 clock.cancel();
                 clock_view.setText("10:00");
-                clock_value = 600000;
+                clock_value = base_time;
                 half_number = 1;
                 quarter_view.setText(""+half_number);
                 clock_Start = false;
@@ -233,11 +235,20 @@ public class BasketballGameActivity extends AppCompatActivity{
                     shot_clock_start = false;
                 }
             }});
+
+        quarter_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                half_number = ((half_number)%4)+1;
+                updateScore();
+            }
+        });
     }
 
     void updateScore() {
         team_1_score.setText(""+team1Score);
         team_2_score.setText(""+team2Score);
+        quarter_view.setText(""+half_number);
     }
 
     void updateClock(){
@@ -251,15 +262,15 @@ public class BasketballGameActivity extends AppCompatActivity{
             }
             public void onFinish(){
                 clock_view.setText("0:00");
-                if (half_number == 1){
-                    half_number = 2;
-                    quarter_view.setText(""+half_number);
-                    clock_value = 6000;
-                    clock_view.setText("10:00");
+                clock_value = base_time;
+                clock_Start = false;
+                if (half_number < 4){
+                    half_number++;
                 }
                 else{
                     clock_view.setText("GAME OVER");
                 }
+                updateScore();
             }
         };
     }

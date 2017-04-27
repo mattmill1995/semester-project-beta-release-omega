@@ -8,15 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 
 public class FootballGameActivity extends AppCompatActivity{
 
-    final int base_timer = 600000;
+    final int base_time = 600000;
 
     Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, Team1Score6_Button, Team2Score6_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = base_timer, lastScore, quarter = 1, down = 1;
+    int team1Score = 0, team2Score = 0, clock_value = base_time, lastScore, quarter = 1, down = 1;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view, quarter_view, downs_view, downs_title, quarter_title;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
@@ -202,7 +200,7 @@ public class FootballGameActivity extends AppCompatActivity{
 
                 clock.cancel();
                 clock_view.setText("10:00");
-                clock_value = base_timer;
+                clock_value = base_time;
                 clock_Start = false;
             }
         });
@@ -285,7 +283,7 @@ public class FootballGameActivity extends AppCompatActivity{
                 clock_view.setText("0:00");
                 down = 1;
                 clock_Start = false;
-                clock_value = base_timer;
+                clock_value = base_time;
                 if (quarter < 4){
                     quarter++;
                 } else {

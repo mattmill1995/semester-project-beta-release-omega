@@ -157,7 +157,7 @@ public class BaseballGameActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 outs++;
-                strikes_view.setText(""+outs);
+                outs_view.setText(""+outs);
 
                 if (outs == 3){
                     updateClock();
