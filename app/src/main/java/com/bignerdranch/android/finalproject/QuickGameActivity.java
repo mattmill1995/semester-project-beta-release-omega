@@ -1,5 +1,6 @@
 package com.bignerdranch.android.finalproject;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 public class QuickGameActivity extends AppCompatActivity{
 
     Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000;
+    int team1Score = 0, team2Score = 0, clock_value = 6000;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
@@ -176,7 +177,11 @@ public class QuickGameActivity extends AppCompatActivity{
                 current_clock_value = millRemaining;
             }
             public void onFinish(){
-                clock_view.setText("0:00");
+
+                Intent intent = new Intent(QuickGameActivity.this, VictoryScreen.class);
+                intent.putExtra("team1score", ""+team1Score);
+                intent.putExtra("team2score", ""+team2Score);
+                startActivity(intent);
             }
         };
     }
