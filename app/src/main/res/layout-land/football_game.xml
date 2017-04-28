@@ -154,7 +154,7 @@
         android:textAlignment="center"
         android:textSize="65dp"
         android:layout_alignTop="@+id/quarter_indicator"
-        android:layout_toLeftOf="@id/main_menu_button"
+        android:layout_toLeftOf="@id/set_clock_button"
         android:layout_marginRight="50dp"
         />
 
