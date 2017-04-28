@@ -169,7 +169,14 @@ public class UltimateGameActivity extends AppCompatActivity{
                 current_clock_value = millRemaining;
             }
             public void onFinish(){
-                clock_view.setText("0:00");
+                Bundle values = new Bundle();
+                values.putInt("team1score", team1Score);
+                values.putInt("team2score", team2Score);
+                Reset_Button.callOnClick();
+
+                Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+                intent.putExtras(values);
+                startActivity(intent);
             }
         };
     }

@@ -12,40 +12,13 @@ import android.widget.TextView;
 public class VolleyballGameActivity extends AppCompatActivity{
 
     Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000;
-    long minutes, seconds, current_clock_value;
-    TextView team_1_score, team_2_score, clock_view;
-    boolean team1_flag = false, team2_flag = false, clock_Start = false;
+    int team1Score = 0, team2Score = 0, team1Wins = 0, team2Wins = 0;
+    TextView team_1_score, team_2_score, team_1_wins, team_2_wins;
+    boolean team1_flag = false, team2_flag = false;
     String result;
 
-    CountDownTimer clock = new CountDownTimer(clock_value, 1000){
 
-        public void onTick(long millRemaining){
-            clock_view.setText(""+millRemaining/1000);
-        }
-        public void onFinish(){
-            clock_view.setText("0");
-        }
-    };
 
-    void convertToTime(long totalSecs){
-        double sec = (double) totalSecs;
-        double double_seconds;
-        minutes = (long) Math.floor(sec/60);
-        double_seconds = (double) (sec/60 - Math.floor(sec/60)) * 60;
-        double_seconds = Math.round(double_seconds);
-        seconds = (long) double_seconds;
-        seconds = seconds * 1;
-    }
-
-    String fixSecondDisplay(long seconds){
-        if (seconds < 10) {
-            result = "0";
-        } else {
-            result = "";
-        }
-        return result;
-    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,13 +37,14 @@ public class VolleyballGameActivity extends AppCompatActivity{
         // wire up the text views
         team_1_score = (TextView) findViewById(R.id.team_1_score_view);
         team_2_score = (TextView) findViewById(R.id.team_2_score_view);
-        clock_view = (TextView) findViewById(R.id.timer);
+        team_1_wins = (TextView) findViewById(R.id.team_1_wins);
+        team_2_wins = (TextView) findViewById(R.id.team_2_wins);
+
 
         //display initial score
         updateScore();
 
-        //display initial clock
-        clock_view.setText("10:00");
+
 
         // Make the buttons do stuff
         MainMenu_Button.setOnClickListener(new View.OnClickListener(){
@@ -88,6 +62,8 @@ public class VolleyballGameActivity extends AppCompatActivity{
                 team1_flag = true;
                 team2_flag = false;
                 updateScore();
+
+               checkScores();
             }
         });
 
@@ -98,6 +74,8 @@ public class VolleyballGameActivity extends AppCompatActivity{
                 team1_flag = false;
                 team2_flag = true;
                 updateScore();
+
+                checkScores();
             }
         });
 
@@ -106,12 +84,11 @@ public class VolleyballGameActivity extends AppCompatActivity{
             public void onClick(View v) {
                 team1Score = 0;
                 team2Score = 0;
+                team1Wins = 0;
+                team2Wins = 0;
                 updateScore();
 
-                clock.cancel();
-                clock_view.setText("10:00");
-                clock_value = 600000;
-                clock_Start = false;
+
             }
         });
 
@@ -136,43 +113,67 @@ public class VolleyballGameActivity extends AppCompatActivity{
             }
         });
 
-        clock_view.setOnClickListener(new View.OnClickListener(){
+        team_1_wins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (clock_Start == false){
-                    updateClock();
-                    clock.start();
-                    clock_Start = true;
-                } else if (clock_Start == true){
-                    clock_Start = false;
-                    clock.cancel();
-                    clock_value = (int) current_clock_value;
-                    updateClock();
-                }
+                team1Wins++;
+                checkScores();
+                team1Score = 0;
+                team2Score = 0;
+                updateScore();
             }
         });
+
+        team_2_wins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                team2Wins++;
+                checkScores();
+                team1Score = 0;
+                team2Score = 0;
+                updateScore();
+            }
+        });
+
+
     }
 
     void updateScore() {
         team_1_score.setText(""+team1Score);
         team_2_score.setText(""+team2Score);
+        team_2_wins.setText(""+team2Wins);
+        team_1_wins.setText(""+team1Wins);
     }
 
-    void updateClock(){
-        clock = new CountDownTimer(clock_value, 1000){
+    void checkScores() {
+        if (team1Score >= team2Score && team1Score >= 15){
+            team1Wins++;
+            updateScore();
+            Reset_Button.callOnClick();
+        }
 
-            public void onTick(long millRemaining){
-                convertToTime(millRemaining/1000);
-                String result = fixSecondDisplay(seconds);
-                clock_view.setText(minutes + ":" + result + seconds);
-                current_clock_value = millRemaining;
-            }
-            public void onFinish(){
-                clock_view.setText("0:00");
-            }
-        };
+        if (team2Score >= team1Score && team2Score >= 15){
+            team2Wins++;
+            updateScore();
+            Reset_Button.callOnClick();
+        }
+
+        if (team1Wins >= 3 || team2Wins >=3){
+            Bundle values = new Bundle();
+            values.putInt("team1score", team1Wins);
+            values.putInt("team2score", team2Wins);
+            Reset_Button.callOnClick();
+            team1Wins = 0;
+            team2Wins = 0;
+            updateScore();
+
+            Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+            intent.putExtras(values);
+            startActivity(intent);
+        }
     }
+
+
 
 
 

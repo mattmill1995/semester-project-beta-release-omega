@@ -287,7 +287,14 @@ public class FootballGameActivity extends AppCompatActivity{
                 if (quarter < 4){
                     quarter++;
                 } else {
-                    clock_view.setText("GG");
+                    Bundle values = new Bundle();
+                    values.putInt("team1score", team1Score);
+                    values.putInt("team2score", team2Score);
+                    Reset_Button.callOnClick();
+
+                    Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+                    intent.putExtras(values);
+                    startActivity(intent);
                 }
                 updateScore();
             }

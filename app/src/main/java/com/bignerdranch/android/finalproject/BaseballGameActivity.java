@@ -178,6 +178,9 @@ public class BaseballGameActivity extends AppCompatActivity{
     void updateScore() {
         team_1_score.setText(""+team1Score);
         team_2_score.setText(""+team2Score);
+        strikes_view.setText(""+strikes);
+        balls_view.setText(""+balls);
+        outs_view.setText(""+ balls);
     }
 
     void updateClock(){
@@ -216,11 +219,24 @@ public class BaseballGameActivity extends AppCompatActivity{
                 break;
             case "9 ↑": clock_view.setText("9 ↓");
                 break;
-            case "9 ↓": clock_view.setText("GAME OVER");
-                team_1_score.setVisibility(View.INVISIBLE);
-                team_2_score.setVisibility(View.INVISIBLE);
+            case "9 ↓":
+                Bundle values = new Bundle();
+                values.putInt("team1score", team1Score);
+                values.putInt("team2score", team2Score);
+                Reset_Button.callOnClick();
+
+                Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+                intent.putExtras(values);
+                startActivity(intent);
                 break;
+
         }
+        team1Score = 0;
+        team2Score = 0;
+        strikes = 0;
+        balls = 0;
+        outs = 0;
+        updateScore();
     }
 
 

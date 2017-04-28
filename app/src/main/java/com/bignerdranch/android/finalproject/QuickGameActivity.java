@@ -12,12 +12,15 @@ import android.widget.TextView;
 
 public class QuickGameActivity extends AppCompatActivity{
 
+    final int baseTime = 600000;
+
     Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 6000;
+    int team1Score = 0, team2Score = 0, clock_value = baseTime;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view;
     boolean team1_flag = false, team2_flag = false, clock_Start = false;
     String result;
+
 
         CountDownTimer clock = new CountDownTimer(clock_value, 1000){
 
@@ -111,7 +114,7 @@ public class QuickGameActivity extends AppCompatActivity{
 
                 clock.cancel();
                 clock_view.setText("10:00");
-                clock_value = 600000;
+                clock_value = baseTime;
                 clock_Start = false;
             }
         });
@@ -178,9 +181,14 @@ public class QuickGameActivity extends AppCompatActivity{
             }
             public void onFinish(){
 
-                Intent intent = new Intent(QuickGameActivity.this, VictoryScreen.class);
-                intent.putExtra("team1score", ""+team1Score);
-                intent.putExtra("team2score", ""+team2Score);
+
+                Bundle values = new Bundle();
+                values.putInt("team1score", team1Score);
+                values.putInt("team2score", team2Score);
+                Reset_Button.callOnClick();
+
+                Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+                intent.putExtras(values);
                 startActivity(intent);
             }
         };

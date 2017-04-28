@@ -11,11 +11,13 @@ import android.widget.TextView;
 
 public class SoccerGameActivity extends AppCompatActivity{
 
+    final int basetime = 6000;
+
     Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000;
+    int team1Score = 0, team2Score = 0, clock_value = basetime, quarter = 1, shot_clock_value = 30000;
     long minutes, seconds, current_clock_value;
-    TextView team_1_score, team_2_score, clock_view;
-    boolean team1_flag = false, team2_flag = false, clock_Start = false;
+    TextView team_1_score, team_2_score, clock_view, quarter_view, shotclock_view;
+    boolean team1_flag = false, team2_flag = false, clock_Start = false, shot_clock_start = false;
     String result;
 
     CountDownTimer clock = new CountDownTimer(clock_value, 1000){
@@ -25,6 +27,18 @@ public class SoccerGameActivity extends AppCompatActivity{
         }
         public void onFinish(){
             clock_view.setText("0");
+        }
+    };
+
+    CountDownTimer shot_clock = new CountDownTimer(shot_clock_value, 1000) {
+        @Override
+        public void onTick(long millRemaining) {
+            shotclock_view.setText(":"+millRemaining/1000);
+        }
+
+        @Override
+        public void onFinish() {
+            shotclock_view.setText(":30");
         }
     };
 
@@ -65,12 +79,15 @@ public class SoccerGameActivity extends AppCompatActivity{
         team_1_score = (TextView) findViewById(R.id.team_1_score_view);
         team_2_score = (TextView) findViewById(R.id.team_2_score_view);
         clock_view = (TextView) findViewById(R.id.timer);
+        quarter_view = (TextView) findViewById(R.id.half_indicator);
+        shotclock_view = (TextView) findViewById(R.id.timeout_clock);
 
         //display initial score
         updateScore();
 
         //display initial clock
         clock_view.setText("10:00");
+        shotclock_view.setText(":30");
 
         // Make the buttons do stuff
         MainMenu_Button.setOnClickListener(new View.OnClickListener(){
@@ -106,11 +123,12 @@ public class SoccerGameActivity extends AppCompatActivity{
             public void onClick(View v) {
                 team1Score = 0;
                 team2Score = 0;
+                quarter = 1;
                 updateScore();
 
                 clock.cancel();
                 clock_view.setText("10:00");
-                clock_value = 600000;
+                clock_value = basetime;
                 clock_Start = false;
             }
         });
@@ -136,6 +154,14 @@ public class SoccerGameActivity extends AppCompatActivity{
             }
         });
 
+        quarter_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quarter = ((quarter)%4)+1;
+                updateScore();
+            }
+        });
+
         clock_view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -152,11 +178,25 @@ public class SoccerGameActivity extends AppCompatActivity{
                 }
             }
         });
+
+        shotclock_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (shot_clock_start == false) {
+                    shot_clock.start();
+                    shot_clock_start = true;
+                } else if (shot_clock_start == true){
+                    shot_clock.cancel();
+                    shotclock_view.setText(":30");
+                    shot_clock_start = false;
+                }
+            }});
     }
 
     void updateScore() {
         team_1_score.setText(""+team1Score);
         team_2_score.setText(""+team2Score);
+        quarter_view.setText(""+quarter);
     }
 
     void updateClock(){
@@ -168,8 +208,23 @@ public class SoccerGameActivity extends AppCompatActivity{
                 clock_view.setText(minutes + ":" + result + seconds);
                 current_clock_value = millRemaining;
             }
-            public void onFinish(){
+            public void onFinish() {
                 clock_view.setText("0:00");
+                clock_Start = false;
+                clock_value = basetime;
+                if (quarter < 4){
+                    quarter++;
+                } else {
+                    Bundle values = new Bundle();
+                    values.putInt("team1score", team1Score);
+                    values.putInt("team2score", team2Score);
+                    Reset_Button.callOnClick();
+
+                    Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+                    intent.putExtras(values);
+                    startActivity(intent);
+                }
+                updateScore();
             }
         };
     }

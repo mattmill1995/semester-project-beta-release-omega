@@ -94,8 +94,8 @@
 
         <activity android:name=".VictoryScreen" android:screenOrientation="landscape">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.ALTERNATIVE"/>
+                <action android:name="android.intent.action.ANSWER"/>
+                <category android:name="android.intent.category.INFO"/>
             </intent-filter>
         </activity>
 

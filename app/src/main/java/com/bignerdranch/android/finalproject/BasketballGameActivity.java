@@ -268,7 +268,14 @@ public class BasketballGameActivity extends AppCompatActivity{
                     half_number++;
                 }
                 else{
-                    clock_view.setText("GAME OVER");
+                    Bundle values = new Bundle();
+                    values.putInt("team1score", team1Score);
+                    values.putInt("team2score", team2Score);
+                    Reset_Button.callOnClick();
+
+                    Intent intent = new Intent(getBaseContext(), VictoryScreen.class);
+                    intent.putExtras(values);
+                    startActivity(intent);
                 }
                 updateScore();
             }
