@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class UltimateGameActivity extends AppCompatActivity{
 
-    Button Team1Score_Button, Team2Score_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
+    Button Team1Score_Button, Team2Score_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
     int team1Score = 0, team2Score = 0, clock_value = 600000;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view;
@@ -54,7 +54,6 @@ public class UltimateGameActivity extends AppCompatActivity{
         // wire up the buttons
         Team1Score_Button = (Button) findViewById(R.id.team_1_score_button_1);
         Team2Score_Button = (Button) findViewById(R.id.team_2_score_button_1);
-        SaveGame_Button = (Button) findViewById(R.id.save_game_button);
         MainMenu_Button = (Button) findViewById(R.id.main_menu_button);
         SetClock_Button = (Button) findViewById(R.id.set_clock_button);
         Reset_Button = (Button) findViewById(R.id.reset_button);

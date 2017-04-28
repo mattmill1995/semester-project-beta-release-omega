@@ -10,7 +10,7 @@ import android.widget.Button;
 public class MainMenuActivity extends AppCompatActivity {
 
     //button declarations
-    Button mQuickGameButton, mNewGameButton, mLoadGameButton, mAppSettingsButton;
+    Button mQuickGameButton, mNewGameButton, mAppSettingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +31,6 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, QuickGameActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        mLoadGameButton = (Button) findViewById(R.id.load_game_btn);
-        mLoadGameButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, LoadGameActivity.class);
                 startActivity(intent);
             }
         });

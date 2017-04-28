@@ -46,21 +46,14 @@
             android:layout_below="@id/quick_game_btn"
             />
 
-        <Button
-            android:id="@+id/load_game_btn"
-            android:text="Load Game"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/new_game_btn"
-            />
+
 
         <Button
             android:id="@+id/app_settings_btn"
             android:text="App Settings"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/load_game_btn"
+            android:layout_below="@id/new_game_btn"
             android:layout_width="125dp"/>
     </RelativeLayout>
 

@@ -71,14 +71,6 @@
         android:layout_below="@id/team_2_score_button_3"
         android:text="+6"/>
 
-    <Button
-        android:id="@+id/save_game_button"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_alignParentBottom="true"
-        android:text="Save Game"
-        />
 
     <Button
         android:id="@+id/undo_button"
@@ -114,7 +106,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_above="@id/save_game_button"
+        android:layout_alignParentBottom="true"
         android:text="Set Score"/>
 
     <Button
@@ -141,8 +133,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_above="@id/set_clock_button"
-        android:layout_alignParentRight="true"
+        android:layout_above="@id/reset_button"
         android:text="Main Menu"/>
 
     <TextView

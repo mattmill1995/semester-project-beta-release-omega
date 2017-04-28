@@ -13,7 +13,7 @@ public class FootballGameActivity extends AppCompatActivity{
 
     final int base_time = 600000;
 
-    Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, Team1Score6_Button, Team2Score6_Button, SaveGame_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
+    Button Team1Score1_Button, Team2Score1_Button, Team1Score2_Button, Team2Score2_Button, Team1Score3_Button, Team2Score3_Button, Team1Score6_Button, Team2Score6_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
     int team1Score = 0, team2Score = 0, clock_value = base_time, lastScore, quarter = 1, down = 1;
     long minutes, seconds, current_clock_value;
     TextView team_1_score, team_2_score, clock_view, quarter_view, downs_view, downs_title, quarter_title;
@@ -61,7 +61,6 @@ public class FootballGameActivity extends AppCompatActivity{
         Team2Score3_Button = (Button) findViewById(R.id.team_2_score_button_3);
         Team1Score6_Button = (Button) findViewById(R.id.team_1_score_button_6);
         Team2Score6_Button = (Button) findViewById(R.id.team_2_score_button_6);
-        SaveGame_Button = (Button) findViewById(R.id.save_game_button);
         MainMenu_Button = (Button) findViewById(R.id.main_menu_button);
         SetClock_Button = (Button) findViewById(R.id.set_clock_button);
         Reset_Button = (Button) findViewById(R.id.reset_button);

@@ -20,14 +20,6 @@
         android:layout_margin="20dp"
         android:text="+1"/>
 
-    <Button
-        android:id="@+id/save_game_button"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_alignParentBottom="true"
-        android:text="Save Game"
-        />
 
     <Button
         android:id="@+id/undo_button"
@@ -68,7 +60,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_above="@id/save_game_button"
+        android:layout_alignParentBottom="true"
         android:text="Set Score"/>
 
     <Button
