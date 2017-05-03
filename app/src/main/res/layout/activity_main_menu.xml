@@ -54,7 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/new_game_btn"
-            android:layout_width="125dp"/>
+            android:layout_width="125dp"
+            android:visibility="invisible
+"/>
     </RelativeLayout>
 
 

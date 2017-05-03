@@ -12,10 +12,10 @@ import android.widget.TextView;
 public class UltimateGameActivity extends AppCompatActivity{
 
     Button Team1Score_Button, Team2Score_Button, MainMenu_Button, SetClock_Button, Reset_Button, SetScore_Button, Undo_Button;
-    int team1Score = 0, team2Score = 0, clock_value = 600000;
+    int team1Score = 0, team2Score = 0, clock_value = 600000, quarter = 1, shot_clock_value = 30000;
     long minutes, seconds, current_clock_value;
-    TextView team_1_score, team_2_score, clock_view;
-    boolean team1_flag = false, team2_flag = false, clock_Start = false;
+    TextView team_1_score, team_2_score, clock_view, quarter_view, timeout_view;
+    boolean team1_flag = false, team2_flag = false, clock_Start = false, shot_clock_start = false;
     String result;
 
     CountDownTimer clock = new CountDownTimer(clock_value, 1000){
@@ -25,6 +25,17 @@ public class UltimateGameActivity extends AppCompatActivity{
         }
         public void onFinish(){
             clock_view.setText("0");
+        }
+    };
+
+    CountDownTimer shot_clock = new CountDownTimer(shot_clock_value, 1000) {
+        @Override
+        public void onTick(long millRemaining) {timeout_view.setText(":"+millRemaining/1000);
+        }
+
+        @Override
+        public void onFinish() {
+            timeout_view.setText(":30");
         }
     };
 
@@ -63,13 +74,18 @@ public class UltimateGameActivity extends AppCompatActivity{
         // wire up the text views
         team_1_score = (TextView) findViewById(R.id.team_1_score_view);
         team_2_score = (TextView) findViewById(R.id.team_2_score_view);
+        quarter_view = (TextView) findViewById(R.id.half_indicator);
         clock_view = (TextView) findViewById(R.id.timer);
+        timeout_view = (TextView) findViewById(R.id.timeout_clock);
 
         //display initial score
         updateScore();
 
         //display initial clock
         clock_view.setText("10:00");
+        quarter_view.setText("1");
+        timeout_view.setText(":30");
+
 
         // Make the buttons do stuff
         MainMenu_Button.setOnClickListener(new View.OnClickListener(){
@@ -148,6 +164,33 @@ public class UltimateGameActivity extends AppCompatActivity{
                     clock.cancel();
                     clock_value = (int) current_clock_value;
                     updateClock();
+                }
+            }
+        });
+
+        quarter_view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                quarter_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        quarter = ((quarter)%4)+1;
+                        updateScore();
+                    }
+                });
+            }
+        });
+
+        timeout_view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (shot_clock_start == false) {
+                    shot_clock.start();
+                    shot_clock_start = true;
+                } else if (shot_clock_start == true){
+                    shot_clock.cancel();
+                    timeout_view.setText(":30");
+                    shot_clock_start = false;
                 }
             }
         });

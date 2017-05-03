@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:text="Set Score"/>
+        android:text="Set Score"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/reset_button"
@@ -78,7 +79,8 @@
         android:layout_margin="10dp"
         android:layout_above="@id/undo_button"
         android:layout_alignParentRight="true"
-        android:text="Set Clock"/>
+        android:text="Set Clock"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/main_menu_button"
@@ -108,19 +110,38 @@
         android:textSize="65dp"
         android:layout_alignBaseline="@+id/timeout_clock"
         android:layout_alignBottom="@+id/timeout_clock"
-        android:layout_toLeftOf="@+id/timer"
-        android:layout_toStartOf="@+id/timer"/>
+        android:layout_toRightOf="@+id/team_1_score_view"
+        android:layout_toEndOf="@+id/team_1_score_view"/>
+
+    <TextView
+        android:id="@+id/half_labele"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/half_indicator"
+        android:layout_alignLeft="@id/half_indicator"
+        android:text="Half#"
+        android:textColor="@android:color/holo_orange_dark"/>
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_toRightOf="@id/half_indicator"
-        android:layout_below="@id/timer"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="30dp"
         android:textColor="@android:color/holo_orange_dark"
         android:textAlignment="center"
         android:textSize="65dp"
-        android:id="@+id/timeout_clock"/>
+        android:id="@+id/timeout_clock"
+        android:layout_below="@+id/main_menu_button"
+        android:layout_toRightOf="@+id/timer"
+        android:layout_toEndOf="@+id/timer"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/timeout_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/timeout_clock"
+        android:layout_alignLeft="@id/timeout_clock"
+        android:text="Timeout Clock"
+        android:textColor="@android:color/holo_orange_dark"/>
 
 </RelativeLayout>

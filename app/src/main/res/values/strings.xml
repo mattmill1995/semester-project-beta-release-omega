@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name">Scoreboard</string>
     <string name="settings_menu_sound">Sounds</string>
     <string name="settings_menu_colors">Colors</string>
     <string name="settings_menu_background">Background</string>

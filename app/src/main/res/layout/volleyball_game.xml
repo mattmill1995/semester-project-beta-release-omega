@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:text="Set Score"/>
+        android:text="Set Score"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/reset_button"
@@ -78,7 +79,8 @@
         android:layout_margin="10dp"
         android:layout_above="@id/undo_button"
         android:layout_alignParentRight="true"
-        android:text="Set Clock"/>
+        android:text="Set Clock"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/main_menu_button"
@@ -100,7 +102,7 @@
         android:textSize="65dp"
         android:layout_toLeftOf="@id/team_2_score_view"
         android:layout_centerVertical="true"
-        android:text="st"
+        android:text="0"
         />
 
     <TextView
@@ -112,6 +114,24 @@
         android:textAlignment="center"
         android:textSize="65dp"
         android:id="@+id/team_1_wins"
-        android:text="te"/>
+        android:text="0"/>
+
+    <TextView
+        android:id="@+id/game_1_title"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/team_1_wins"
+        android:layout_alignLeft="@id/team_1_wins"
+        android:text="Team 1 Wins"
+        android:textColor="@android:color/holo_orange_dark"/>
+
+    <TextView
+        android:id="@+id/game_2_title"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/team_2_wins"
+        android:layout_alignLeft="@id/team_2_wins"
+        android:text="Team 2 Wins"
+        android:textColor="@android:color/holo_orange_dark"/>
 
 </RelativeLayout>
